@@ -1,8 +1,6 @@
 const template = document.createElement("template");
 template.innerHTML = `
-
-    <style>
-        
+    <style>    
         .tooltip-container {
             display: inline-block;
             position: relative;
@@ -49,7 +47,6 @@ template.innerHTML = `
             <slot name="message" />
         </div>
     </div>
-
 `;
 
 class PopupNotify extends HTMLElement {
