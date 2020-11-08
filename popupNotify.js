@@ -46,7 +46,7 @@ template.innerHTML = `
         </svg>
 
         <div class="notify-container">
-            My tooltip text
+            <slot name="message" />
         </div>
     </div>
 
@@ -57,6 +57,40 @@ class PopupNotify extends HTMLElement {
         super();
         this.attachShadow({mode: "open" });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+
+    tooltip(expandState) {
+        const tooltip = this.shadowRoot.querySelector(".notify-container");
+        const alert = this.shadowRoot.querySelector(".alert");
+        const cancel = this.shadowRoot.querySelector(".cancel");
+
+        if(expandState) {
+            tooltip.style.transform = "scale(1)";
+            alert.style.display = "none";
+            cancel.style.display = "block";
+            expandState = false;
+        } else {
+            tooltip.style.transform = "scale(0)";
+            cancel.style.display = "none";
+            alert.style.display = "block";
+        }
+    }
+
+    connectedCallback() {
+        this.shadowRoot.querySelector(".alert").addEventListener("click", () => {
+            this.tooltip(true);
+        });
+        this.shadowRoot.querySelector(".cancel").addEventListener("click", () => {
+            this.tooltip(false);
+        })
+
+        if(this.getAttribute("tipBackground")) {
+            this.shadowRoot.querySelector(".notify-container").style.background = this.getAttribute("tipBackground");
+        }
+
+        if(this.getAttribute("tipColor")) {
+            this.shadowRoot.querySelector(".notify-container").style.color = this.getAttribute("tipColor");
+        }
     }
 }
 

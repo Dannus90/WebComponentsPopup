@@ -10,7 +10,11 @@
 <body>
     <div class="container">
         <h1>Tooltip customelement</h1>
-        <p>Lorem ipsum dolor sit amet<popup-notify></popup-notify> consectetur adipisicing elit. Voluptatum sunt laborum quaerat architecto saepe vitae animi explicabo, cumque quis adipisci?</p>
+        <p>Lorem ipsum dolor sit amet
+            <popup-notify tipBackground="#ffcc00" tipColor="green">
+                <span slot="message">Lorem ipsum dolor sit amet, consectetur adipisicing.</span>
+            </popup-notify> 
+            consectetur adipisicing elit. Voluptatum sunt laborum quaerat architecto saepe vitae animi explicabo, cumque quis adipisci?</p>
     </div>
 </body>
 </html>
