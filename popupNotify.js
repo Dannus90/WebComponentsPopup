@@ -92,6 +92,15 @@ class PopupNotify extends HTMLElement {
             this.shadowRoot.querySelector(".notify-container").style.color = this.getAttribute("tipColor");
         }
     }
+
+    disconnectedCallback() {
+        this.shadowRoot.querySelector(".alert").removeEventListener("click", () => {
+            this.tooltip(true);
+        }, true);
+        this.shadowRoot.querySelector(".cancel").removeEventListener("click", () => {
+            this.tooltip(false);
+        }, true)
+    }
 }
 
 window.customElements.define("popup-notify", PopupNotify)
